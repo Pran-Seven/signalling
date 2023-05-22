@@ -32,7 +32,9 @@ const io = require('socket.io')(server,{
 
 io.on('connection',(socket)=>{
     console.log('connected socket io')
+    let message;
     socket.on('setup',(msg)=>{
-       socket.emit('message',msg)
+       message=msg
     })
+    socket.emit('message',message)
 })
