@@ -33,9 +33,6 @@ const io = require('socket.io')(server,{
 io.on('connection',(socket)=>{
     console.log('connected socket io')
     socket.on('setup',(msg)=>{
-       console.log(msg,'message from client')
-    })
-    socket.emit('message',{
-        message:'Hello from server'
+       socket.emit('message',msg)
     })
 })
