@@ -33,14 +33,13 @@ const io = require('socket.io')(server,{
 io.on('connection',(socket)=>{
     console.log('connected socket io')
     socket.on('setup',(mssg)=>{
-        console.log(mssg.id,'id received')
        socket.join(mssg.id)
+       console.log(mssg.id,'message-id')
        socket.emit('connected',{
-        message:'connection done'
+        message:`connection done with ${mssg.id}`
        })
-    })
+    }) 
     socket.on('message',(newMessage)=>{
-        console.log(newMessage,'received message')
         const sendMessage = newMessage.message
         const id = newMessage.userId
         socket.in(id).emit('received',sendMessage)
