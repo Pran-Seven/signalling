@@ -45,4 +45,20 @@ io.on('connection',(socket)=>{
         const id = newMessage.userId
         socket.in(id).emit('received',sendMessage)
     })
+    socket.on('feedback_channel',(mssg)=>{
+        
+        socket.join(mssg.id)
+        console.log(mssg.id,'message-id')
+        socket.emit('connected',{
+         message:`connection done with ${mssg.id}`
+        })
+     }) 
+     socket.on('feedback',(newMessage)=>{
+          let finalObj=[]
+         console.log(newMessage,'new-mssg')
+         const feedback = newMessage.Feedback
+         const id = newMessage.userId
+         finalObj.push(feedback)
+         socket.in(id).emit('received',finalObj)
+     })
 })
