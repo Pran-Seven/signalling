@@ -59,7 +59,6 @@ io.on('connection',(socket)=>{
          console.log(newMessage,'new-mssg')
          finalObj[name]=newMessage.Feedback[name]
          const id = newMessage.userId
-         finalObj.push(feedback)
          socket.in(id).emit('received',finalObj)
      })
 })
