@@ -23,6 +23,7 @@ const server = app.listen(PORT,()=>[
     console.log('connected')
 ])
 
+var finalObj={}
 
 const io = require('socket.io')(server,{
     cors:{
@@ -52,7 +53,6 @@ io.on('connection',(socket)=>{
          message:`connection done with ${mssg.id}`
         })
      }) 
-     const finalObj={}
      socket.on('feedback',(newMessage)=>{
          const name = Object.keys(newMessage?.Feedback)[0];
          finalObj[name]=newMessage?.Feedback[name]
