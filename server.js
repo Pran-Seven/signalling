@@ -53,11 +53,12 @@ io.on('connection',(socket)=>{
          message:`connection done with ${mssg.id}`
         })
      }) 
+     const finalObj={}
      socket.on('feedback',(newMessage)=>{
-        //  const name = Object.keys(newMessage?.Feedback)[0];
-         console.log(newMessage,'new-mssg')
-         let obj = Object.assign({},newMessage?.Feedback[0])
+         const name = Object.keys(newMessage?.Feedback)[0];
+         finalObj[name]=newMessage?.Feedback[name]
          const id = newMessage.userId
-         socket.in(id).emit('received',obj)
+         console.log(finalObj,'final-Obj')
+         socket.in(id).emit('received',finalObj)
      })
 })
