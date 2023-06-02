@@ -40,7 +40,6 @@ io.on('connection',(socket)=>{
        })
     }) 
     socket.on('message',(newMessage)=>{
-        console.log(newMessage,'new-mssg')
         const sendMessage = newMessage.message
         const id = newMessage.userId
         socket.in(id).emit('received',sendMessage)
