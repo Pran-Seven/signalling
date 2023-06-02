@@ -55,6 +55,9 @@ io.on('connection',(socket)=>{
      }) 
      socket.on('feedback',(newMessage)=>{
          const name = Object.keys(newMessage?.Feedback)[0];
+         if(newMessage?.Feedback[name]?.Flag){
+            finalObj['flag']=newMessage?.Feedback[name]?.Flag
+         }
          finalObj[name]=newMessage?.Feedback[name]
          const id = newMessage.userId
          console.log(finalObj,'final-Obj')
