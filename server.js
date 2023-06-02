@@ -62,6 +62,8 @@ io.on('connection',(socket)=>{
          const id = newMessage.userId
          console.log(finalObj,'final-Obj')
          socket.in(id).emit('received',finalObj)
-        //  finalObj={}
+         if(finalObj['flag']){
+            finalObj['flag']={}
+         }
      })
 })
